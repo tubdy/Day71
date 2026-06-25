@@ -13,6 +13,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from forms import CreatePostForm, RegisterForm, LoginForm, CommentForm
 # Optional: add contact me email functionality (Day 60)
 # import smtplib
+import os
+from dotenv import load_dotenv
 def get_gravatar_url(email, size=100):
     email_encoded = email.lower().strip().encode('utf-8')
     gravatar_hash = hashlib.md5(email_encoded).hexdigest()
@@ -33,11 +35,11 @@ This will install the packages from the requirements.txt for this project.
 
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
+app.config['SECRET_KEY'] = os.environ.get('FLASK_ECRET_KEY')
 ckeditor = CKEditor(app)
 Bootstrap5(app)
 gravatar = get_gravatar_url('purves@gmail.com')
--*ZAS888888888888888888888888888888888
+
 login_manager = LoginManager()
 login_manager.init_app(app)
 
@@ -61,7 +63,7 @@ def load_user(user_id):
 # CREATE DATABASE
 class Base(DeclarativeBase):
     pass
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///posts.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
 db = SQLAlchemy(model_class=Base)
 db.init_app(app)
 
