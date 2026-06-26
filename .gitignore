@@ -139,6 +139,7 @@ celerybeat.pid
 templates/.env
 .venv
 tom
+.env
 env/
 venv/
 ENV/
