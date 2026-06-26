@@ -310,7 +310,8 @@ def contact():
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5001)
+    app.run()
+
 #if __name__ == "__main__":
     # Render binds to 0.0.0.0 and defaults to port 10000
  #   serve(app, host="0.0.0.0", port=10000, threads=4)
